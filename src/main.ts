@@ -9,6 +9,7 @@ import { HttpException, HttpStatus, NotFoundException } from '@nestjs/common';
 import { SendResponse } from './utils/send-response';
 import config from './config/config';
 import code from './config/code';
+declare const module: any;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -82,7 +83,7 @@ async function bootstrap() {
       .addBearerAuth()
       .setTitle('Nest Example')
       .setDescription('Nest Example By Nguyen Cong Thang')
-      .setVersion('1.0')
+      .setVersion('1.0.1')
       .build();
     const document = SwaggerModule.createDocument(app, config_bearer);
 
@@ -110,5 +111,9 @@ async function bootstrap() {
   );
 
   await app.listen(process.env.LISTEN_PORT, process.env.LISTEN_IP);
+  if (module.hot) {
+    module.hot.accept();
+    module.hot.dispose(() => app.close());
+  }
 }
 bootstrap();
