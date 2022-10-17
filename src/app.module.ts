@@ -12,6 +12,7 @@ import { DatabaseModule } from './database.module';
 import { RoleModule } from './modules/role/role.module';
 import { PermissionModule } from './modules/permission/permission.module';
 import { TwofaModule } from './modules/twofa/twofa.module';
+import { SystemModule } from './modules/system/system.module';
 
 @Module({
   imports: [
@@ -48,6 +49,7 @@ import { TwofaModule } from './modules/twofa/twofa.module';
     RoleModule,
     PermissionModule,
     TwofaModule,
+    SystemModule,
   ],
   controllers: [AppController],
   providers: [AppService],
