@@ -88,9 +88,9 @@ export class FileManagerService {
     try {
       const public_folder = `public/${folder}`;
       const extArray = file.mimetype.split('/');
-      const savepicture = join(public_folder, `${filename}.tmp`);
-      fs.writeFileSync(savepicture, file.buffer);
-      while (!fs.existsSync(savepicture)) {}
+      const savePicture = join(public_folder, `${filename}.tmp`);
+      fs.writeFileSync(savePicture, file.buffer);
+      while (!fs.existsSync(savePicture)) {}
       return `${filename}.tmp`;
     } catch (e) {
       console.log(e);
