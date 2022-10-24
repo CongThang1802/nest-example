@@ -27,10 +27,10 @@ export class listRoleDto {
 export class AddRolesDTO {
   @Expose()
   @ApiProperty({ example: 1 })
+  @IsNotEmpty()
   @IsInt()
   @Type(() => Number)
   @IsPositive()
-  @IsNotEmpty()
   user_id: number;
 
   @Expose()

@@ -8,9 +8,9 @@ import * as numeral from 'numeral';
 import { appDataSource } from 'src/config/datasource';
 export class UtilsProvider {
   static sortObject(obj) {
-    var sorted = {};
-    var str = [];
-    var key;
+    const sorted = {};
+    const str = [];
+    let key;
     for (key in obj) {
       if (obj.hasOwnProperty(key)) {
         str.push(encodeURIComponent(key));
@@ -25,7 +25,7 @@ export class UtilsProvider {
 
   static ConvertNumberInEntites(entity: object) {
     if (entity) {
-      for (var item of Object.keys(entity)) {
+      for (const item of Object.keys(entity)) {
         if (typeof entity[item] == 'object') {
           entity[item] = UtilsProvider.ConvertNumberInEntites(entity[item]);
         } else {
@@ -81,7 +81,7 @@ export class UtilsProvider {
 
   static ArrayAnswer(object) {
     try {
-      var value = JSON.parse(object);
+      const value = JSON.parse(object);
       if (Array.isArray(value)) return true;
       return false;
     } catch (e) {
@@ -127,9 +127,9 @@ export class UtilsProvider {
 
   static parseJwt(token) {
     try {
-      var base64Url = token.split('.')[1];
-      var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-      var jsonPayload = decodeURIComponent(
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const jsonPayload = decodeURIComponent(
         atob(base64)
           .split('')
           .map(function (c) {
@@ -234,7 +234,7 @@ export class UtilsProvider {
   }
 
   static addDays(date, days) {
-    var result = new Date(date);
+    const result = new Date(date);
     result.setDate(result.getDate() + days);
     return result;
   }
@@ -249,15 +249,15 @@ export class UtilsProvider {
     old_title: string,
     new_title: string,
   ) {
-    var new_slug = await UtilsProvider.titleToSlug(new_title);
+    let new_slug = await UtilsProvider.titleToSlug(new_title);
     const QueryRepo = appDataSource.getRepository(class_name);
 
-    var check = true;
-    var count = 0;
-    var save_check = new_slug;
+    let check = true;
+    let count = 0;
+    const save_check = new_slug;
 
     while (check) {
-      var query = await QueryRepo.createQueryBuilder(entity)
+      const query = await QueryRepo.createQueryBuilder(entity)
         .where(
           `(${entity}.${slug_property} = :slug and ${
             entity_id ? `${entity}.${entity_property_id} != :id` : '"*"="*"'
@@ -279,21 +279,21 @@ export class UtilsProvider {
   }
 
   public static randomNumber(length) {
-    var result = '';
-    var characters = '0123456789';
-    var charactersLength = characters.length;
-    for (var i = 0; i < length; i++) {
+    let result = '';
+    const characters = '0123456789';
+    const charactersLength = characters.length;
+    for (let i = 0; i < length; i++) {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     return result;
   }
 
   public static randomString(length) {
-    var result = '';
-    var characters =
+    let result = '';
+    const characters =
       'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var charactersLength = characters.length;
-    for (var i = 0; i < length; i++) {
+    const charactersLength = characters.length;
+    for (let i = 0; i < length; i++) {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     return result;

@@ -19,10 +19,10 @@ const DatabaseConfig = {
     charset: 'utf8mb4_unicode_ci',
   },
   subscribers: [mySubscriber],
-  // autoLoadEntities: true,
+  autoLoadEntities: true,
   synchronize: process.env.SYNC === 'true' ? true : false,
   entities: [join(__dirname, '..', 'entities', '**', '*.{ts,js}')],
-  migrations: [join(__dirname, '..', 'migrations/*Migrate.{ts,js}')],
+  migrations: [join(__dirname, '..', 'migrations/*.{ts,js}')],
   migrationsDir: join(__dirname, '..', 'migrations'),
   cli: {
     migrationsDir: 'src/migrations',
