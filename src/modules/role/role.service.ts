@@ -61,14 +61,16 @@ export class RoleService {
         skip: (page - 1) * perPage,
         take: perPage,
         order: { role_id: sort as SORT },
-        where: [
-          {
-            role_key: keyword ? Like(`%${keyword}%`) : Not(IsNull()),
-          },
-          {
-            role_name: keyword ? Like(`%${keyword}%`) : Not(IsNull()),
-          },
-        ],
+        where: keyword
+          ? [
+              {
+                role_key: Like(`%${keyword}%`),
+              },
+              {
+                role_name: Like(`%${keyword}%`),
+              },
+            ]
+          : {},
       });
 
       return { list: roles[0], count: roles[1] };

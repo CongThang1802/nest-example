@@ -72,14 +72,16 @@ export class PermissionService {
         skip: (page - 1) * perPage,
         take: perPage,
         order: { permission_id: sort as SORT },
-        where: [
-          {
-            permission_key: keyword ? Like(`%${keyword}%`) : Not(IsNull()),
-          },
-          {
-            permission_name: keyword ? Like(`%${keyword}%`) : Not(IsNull()),
-          },
-        ],
+        where: keyword
+          ? [
+              {
+                permission_key: Like(`%${keyword}%`)
+              },
+              {
+                permission_name: Like(`%${keyword}%`),
+              },
+            ]
+          : {},
       });
 
       return { list: Permissions[0], count: Permissions[1] };
