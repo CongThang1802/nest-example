@@ -57,7 +57,7 @@ export class FileManagerService {
     }
     const new_file_name = `public/${folder}/${id}_${+new Date()}_${UtilsProvider.randomNumber(
       10,
-    )}`;
+    )}${path.extname(request_file)}`;
     if (checkfile) {
       fs.unlinkSync(checkfile);
       fs.renameSync(request_file, new_file_name);
@@ -88,10 +88,13 @@ export class FileManagerService {
     try {
       const public_folder = `public/${folder}`;
       const extArray = file.mimetype.split('/');
-      const savePicture = join(public_folder, `${filename}.tmp`);
+      const savePicture = join(
+        public_folder,
+        `${filename}${path.extname(file.originalname)}`,
+      );
       fs.writeFileSync(savePicture, file.buffer);
       while (!fs.existsSync(savePicture)) {}
-      return `${filename}.tmp`;
+      return `${filename}${path.extname(file.originalname)}`;
     } catch (e) {
       console.log(e);
       return null;

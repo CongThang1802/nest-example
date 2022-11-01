@@ -8,13 +8,14 @@ import {
 } from '@nestjs/common';
 import { SystemService } from './system.service';
 import { JwtAuthGuard } from '../../guards/auth.guard';
-import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
+import { ApiBearerAuth, ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
 import config from '../../config/config';
 import { SendResponse } from 'src/utils/send-response';
 import { ApiImplicitFormData } from 'src/decorator/api-implicit-form-data.decorator';
 import { multerOptions } from '../../utils/multer_options';
 import { Auth } from 'src/decorator/auth.decorator';
+import { FileUploadDto } from './upload-file.dto';
 
 @ApiTags('Systems| Config')
 @Controller('system')
@@ -25,7 +26,12 @@ export class SystemController {
   @HttpCode(200)
   @Auth()
   @ApiBearerAuth()
-  @ApiImplicitFormData({ name: 'picture', required: false, type: 'file' })
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    description: 'images',
+    type: FileUploadDto,
+  })
+  // @ApiImplicitFormData({ name: 'picture', required: false, type: 'file' })
   @UseInterceptors(FileInterceptor('picture', multerOptions))
   async UpdateInformation(@UploadedFile() picture: Express.Multer.File) {
     try {
