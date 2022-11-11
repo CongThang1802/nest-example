@@ -5,16 +5,22 @@ import { HttpExceptionFilter } from './pipe/exceptionfilter.pipe';
 import { unEscapeHTMLInterceptor } from './pipe/unescap_HTML_interceptor';
 import { ValidationPipe } from './pipe/validation.pipe';
 import { escapeHTMLpipe } from './pipe/escape_HTML_transform';
-import { HttpException, HttpStatus, NotFoundException } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  NotFoundException,
+  Logger,
+} from '@nestjs/common';
 import { SendResponse } from './utils/send-response';
 import config from './config/config';
 import code from './config/code';
 declare const module: any;
 
 async function bootstrap() {
+  const logger = new Logger();
   const app = await NestFactory.create(AppModule);
   app.use((req, res, next) => {
-    var err = null;
+    const err = null;
     try {
       const ipAddr =
         req.headers['x-forwarded-for'] ||
@@ -66,7 +72,7 @@ async function bootstrap() {
   });
 
   app.use(async (req, res, next) => {
-    var err = null;
+    const err = null;
     try {
       const { ip, method, originalUrl } = req;
 
@@ -115,5 +121,6 @@ async function bootstrap() {
     module.hot.accept();
     module.hot.dispose(() => app.close());
   }
+  logger.log(`app running on port ${process.env.LISTEN_PORT}`);
 }
 bootstrap();

@@ -15,10 +15,11 @@ export const appDataSource = new DataSource({
   extra: {
     charset: 'utf8mb4_unicode_ci',
   },
-  subscribers: [mySubscriber],
+  subscribers: ['src/utils/custom-subcribe'],
   synchronize: process.env.SYNC === 'true' ? true : false,
   entities: [join(__dirname, '..', 'entities', '**', '*.{ts,js}')],
   migrations: [join(__dirname, '..', 'migrations/*.{ts,js}')],
+  migrationsTableName: 'migrations',
 });
 
 appDataSource.initialize();

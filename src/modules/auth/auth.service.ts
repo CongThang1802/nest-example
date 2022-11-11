@@ -50,7 +50,7 @@ export class AuthService {
       accessToken: await this.jwtService.signAsync({
         id: user.user_id,
       }),
-      expiresIn: 300,
+      expiresIn: process.env.ExpiresIn,
       tokenType: 'Bearer',
     };
   }

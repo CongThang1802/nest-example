@@ -6,20 +6,20 @@ import config from 'src/config/config';
 @Exclude()
 export class QueryListDto {
   @Expose()
-  @ApiProperty({ example: 'currentPage', required: false })
+  @ApiProperty({ example: 1, required: false })
   @Type(() => Number)
   @IsInt()
   @IsPositive()
   @IsOptional()
-  public page: number = 1;
+  public page = 1;
 
   @Expose()
-  @ApiProperty({ example: 'perPage', required: false })
+  @ApiProperty({ example: 10, required: false })
   @Type(() => Number)
   @IsInt()
   @IsPositive()
   @IsOptional()
-  public perPage: number = 10;
+  public perPage = 10;
 
   @Expose()
   @ApiProperty({ example: '"ASC" | "DESC"', required: false })

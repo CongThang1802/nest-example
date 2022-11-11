@@ -12,13 +12,14 @@ export const ValidationPipe = (options?: ValidationPipeOptions) =>
   new _ValidationPipe({
     ...options,
     exceptionFactory(validationErrors: ValidationError[]) {
-      var errors = [];
+      let errors = [];
 
       errors = UtilsProvider.getErrorList(validationErrors, errors);
       throw new UnprocessableEntityException(
         new ErrorPayloadDto({
           code: code.VALIDATION_ERROR.code,
           success: false,
+          msg: 'validation error',
           errors,
         }),
       );

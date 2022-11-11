@@ -33,7 +33,7 @@ import { SystemModule } from './modules/system/system.module';
         },
       },
       defaults: {
-        from: '"No Reply" <server@kagasss.info> ',
+        from: '"No Reply" <server@thang.info> ',
       },
       template: {
         dir: join(__dirname, 'mail', 'templates'),
