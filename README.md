@@ -31,3 +31,20 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
+## Run Migration
+
+```bash
+# create new migrate
+$ npm run create --name=NameMigrate
+
+# genarate migrate
+$ npm run generate --name=NameMigrate
+
+# run migrate
+$ npm run db:push
+
+# revert migrate
+$ npm run revert
+```
+
