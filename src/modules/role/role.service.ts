@@ -57,7 +57,7 @@ export class RoleService {
   async listRoles(query: QueryListDto) {
     try {
       const { keyword, page, perPage, sort } = query;
-      const roles = await this.roleRepo.findAndCount({
+      const [list, count] = await this.roleRepo.findAndCount({
         skip: (page - 1) * perPage,
         take: perPage,
         order: { role_id: sort as SORT },
@@ -73,7 +73,7 @@ export class RoleService {
           : {},
       });
 
-      return { list: roles[0], count: roles[1] };
+      return { list, count };
     } catch (e) {
       console.log({ e });
       throw e;

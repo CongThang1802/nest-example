@@ -68,14 +68,14 @@ export class PermissionService {
   async listPermissions(query: QueryListDto) {
     try {
       const { keyword, page, perPage, sort } = query;
-      const Permissions = await this.permissionRepo.findAndCount({
+      const [list, count] = await this.permissionRepo.findAndCount({
         skip: (page - 1) * perPage,
         take: perPage,
         order: { permission_id: sort as SORT },
         where: keyword
           ? [
               {
-                permission_key: Like(`%${keyword}%`)
+                permission_key: Like(`%${keyword}%`),
               },
               {
                 permission_name: Like(`%${keyword}%`),
@@ -84,7 +84,7 @@ export class PermissionService {
           : {},
       });
 
-      return { list: Permissions[0], count: Permissions[1] };
+      return { list, count };
     } catch (e) {
       console.log({ e });
       throw e;
