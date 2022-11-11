@@ -27,14 +27,6 @@ const config = {
   },
   LOCALES: { value: ['en', 'vi'] },
   SORT_TYPE: { value: ['asc', 'desc', 'ASC', 'DESC'] },
-  DEFAULT_COMPANY_VALUE: { value: 'CBJS' },
-  DEFAULT_COMPANY_ORDER_VALUE: { value: 'CBJS-ORDER' },
-  DEFAULT_COMPANY_GROUP_CODE: { value: 'CBJS-GROUP' },
-  DEFAULT_COMPANY_COMBO_CODE: { value: 'CBJS-COMBO' },
-  DEFAULT_COMPANY_COMBO_SUBSCRIBE: { value: 'CBJS-SUBSCRIBE' },
-  FOUNDER_ROLE: {
-    value: ['SUPERADMIN', 'ADMIN', 'INSTRUCTOR', 'CREATOR', 'STUDENT'],
-  },
   NOT_MODIFY_PERMISSIONS: { value: ['users', 'roles', 'permissions'] },
   RANDOM_STRING_LENGTH: { value: 10 },
   TMP_FOLDER: { value: 'tmp' },
@@ -44,17 +36,5 @@ const config = {
   DURATION_TYPE: { value: ['se', 'mi', 'ho', 'da', 'mo'] },
   WHITE_LIST: { value: ['113.161.36.95'] },
   MAX_FILE_SIZE: { value: 2000000 },
-  POINT_NAME: { value: 'jutxu' },
-  EXCHANGE_RATE: { value: 1 },
-  MAX_RECENTLY: { value: 4 },
-  TABLE: {
-    ORDER: {
-      STATUS: {
-        PENDING: 'PENDING', //when wait payment or payment method offline
-        CANCEL: 'CANCEL', //when user cancel order
-        SUCCESS: 'SUCCESS', //when user payment success
-      },
-    },
-  },
 };
 export default config;
