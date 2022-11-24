@@ -24,7 +24,7 @@ export class PermissionsGuard implements CanActivate {
 
     const request = context.switchToHttp().getRequest();
 
-    const user = await UserService.StaticFindUserById(1);
+    const user = await UserService.StaticFindUserById(request.user.user_id);
 
     if (!user)
       throw new HttpException(
